@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard</title>
+
+    <link rel="stylesheet" href="{% static 'css/index.css' %}" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+
+    <style>
+      body {
+        display: flex;
+        margin: 0;
+        font-family: Arial, sans-serif;
+        height: 100vh;
+      }
+
+      /* Header Styles */
+      .dashboard-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: #2a3f54;
+        color: white;
+        padding: 10px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 1000;
+      }
+
+      .dashboard-header .logo {
+        font-size: 20px;
+        font-weight: bold;
+      }
+
+      .dashboard-header .user-profile {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .dashboard-header img {
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+      }
+
+      /* Sidebar Styles */
+      .sidebar {
+        position: fixed;
+        top: 60px;
+        left: 0;
+        bottom: 0;
+        width: 250px;
+        background: #34495e;
+        color: white;
+        overflow-y: auto;
+        padding: 20px 0;
+      }
+
+      .sidebar-nav a {
+        display: block;
+        color: white;
+        padding: 15px 20px;
+        text-decoration: none;
+        transition: background 0.3s;
+      }
+
+      .sidebar-nav a.active,
+      .sidebar-nav a:hover {
+        background: #1abc9c;
+      }
+
+      .sidebar-nav i {
+        margin-right: 10px;
+      }
+
+      /* Main Content Styles */
+      .dashboard-content {
+        margin-left: 250px;
+        margin-top: 60px;
+        padding: 20px;
+      }
+
+      h1,
+      h2 {
+        color: #34495e;
+      }
+
+      .metrics {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 20px;
+      }
+
+      .metric-card {
+        background: #f7f9fb;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        text-align: center;
+      }
+
+      .metric-card h2 {
+        margin-bottom: 10px;
+      }
+
+      .activity-log p {
+        background: #f9f9f9;
+        padding: 10px;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Charts Section */
+      .charts {
+        margin-top: 20px;
+      }
+
+      .charts h2 {
+        margin-bottom: 20px;
+        color: #2a3f54;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="dashboard-header">
+      <div class="logo">Admin Dashboard</div>
+      <div class="user-profile">
+        <img src="https://via.placeholder.com/40" alt="User" />
+        <span>Admin</span>
+      </div>
+    </header>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <nav class="sidebar-nav">
+        <a href="#" class="active"><i class="fas fa-home"></i> Dashboard</a>
+        <a href="#"><i class="fas fa-user-plus"></i> Total Patient</a>
+        <a href="#"><i class="fas fa-list"></i> Old Patient</a>
+        <a href="#"><i class="fas fa-list"></i> New Patient</a>
+        <a href="#"><i class="fas fa-heartbeat"></i> Revenue</a>
+        <a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="dashboard-content">
+      <h1>Welcome, Admin</h1>
+      <section class="metrics">
+        <div class="metric-card">
+          <h2>Total Patients</h2>
+          <p>{{total_count}}</p>
+        </div>
+        <div class="metric-card">
+          <h2>Old patient</h2>
+          <p>23</p>
+        </div>
+        <div class="metric-card">
+          <h2>New Patient</h2>
+          <p>{{count}}</p>
+        </div>
+        <div class="metric-card">
+          <h2>Revenue</h2>
+          <p>$12,345</p>
+        </div>
+      </section>
+
+      <section class="charts">
+        <h2>Analytics</h2>
+        <div id="bar-chart" style="height: 300px"></div>
+        <div id="timeline-chart" style="height: 300px; margin-top: 20px"></div>
+      </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+    <script>
+      // Initialize Bar Chart using ApexCharts
+      var barOptions = {
+        chart: {
+          type: "bar",
+          height: 300,
+        },
+        series: [
+          {
+            name: "Patients",
+            data: [10, 20, 30, 40, 50],
+          },
+        ],
+        xaxis: {
+          categories: ["Jan", "Feb", "Mar", "Apr", "May"],
+        },
+      };
+      var barChart = new ApexCharts(
+        document.querySelector("#bar-chart"),
+        barOptions
+      );
+      barChart.render();
+
+      // Initialize Timeline Chart using ECharts
+      var timelineChart = echarts.init(
+        document.getElementById("timeline-chart")
+      );
+      var timelineOptions = {
+        title: {
+          text: "Patient Visits",
+        },
+        xAxis: {
+          type: "category",
+          data: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        },
+        yAxis: {
+          type: "value",
+        },
+        series: [
+          {
+            data: [50, 70, 65, 80, 90],
+            type: "line",
+          },
+        ],
+      };
+      timelineChart.setOption(timelineOptions);
+    </script>
+  </body>
+</html>

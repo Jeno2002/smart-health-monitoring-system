@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Logout - Smart Health Monitoring</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/index.css' %}" />
+</head>
+<style>
+    footer {
+            background-color: rgb(115, 182, 226);
+            color: #f6f6f9;
+            text-align: center;
+            padding: 10px;
+            position:fixed;
+            bottom: 0px;
+            width: 100%;
+        }
+</style>
+<body>
+    <!-- Navigation
+    <nav class="navbar navbar-expand-lg navbar-custom">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'home' %}">
+                <img src="{% static 'img/logo.png' %}" width="40" height="40" alt="Logo" />
+                Smart Health Monitoring
+            </a>
+        </div>
+    </nav> -->
+    <form action="{% url 'logout' %}" method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger me-2">Yes, Logout</button>
+    </form>
+
+    <!-- Logout Confirmation
+    <div class="container text-center mt-5">
+        <h2>Are you sure you want to logout?</h2>
+        <p class="text-muted">You will need to log in again to access your account.</p>
+
+        <a href="{% url 'logout' %}" class="btn btn-danger me-2">Yes, Logout</a>
+        <a href="{% url 'home' %}" class="btn btn-secondary">Cancel</a>
+    </div> -->
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container text-center">
+          <p>&copy; 2024 Smart Health Monitoring. All Rights Reserved.</p>
+          <div class="footer-links">
+            <a href="#" class="text-white me-3">Privacy Policy</a>
+            <a href="#" class="text-white me-3">Terms of Service</a>
+            <a href="#" class="text-white">Contact Us</a>
+          </div>
+        </div>
+      </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+

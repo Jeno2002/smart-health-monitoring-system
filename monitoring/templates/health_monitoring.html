@@ -1,0 +1,435 @@
+
+
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Monitoring</title>
+    
+    <!-- External CSS (If Needed) -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+ <!-- Bootstrap CSS -->
+ <link
+ href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+ rel="stylesheet"
+/>
+
+<!-- Bootstrap Icons -->
+<link
+ href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css"
+ rel="stylesheet"
+/>
+</head>
+
+<style>
+  body {
+font-family: Arial, sans-serif;
+background-color: #f4f4f4;
+display: flex;
+justify-content: center;
+align-items: center;
+height: 100vh;
+margin: 0;
+}
+
+.container {
+background: white;
+padding: 20px;
+border-radius: 10px;
+box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+text-align: center;
+width: 100%;
+max-width: 400px; /* Set proper max-width */
+margin: auto; /* Centering */
+}
+
+h2 {
+margin-bottom: 20px;
+}
+
+/* Ensure input fields take full width */
+input {
+width: 100%;
+padding: 10px;
+margin: 10px 0;
+border: 1px solid #ccc;
+border-radius: 5px;
+font-size: 16px;
+}
+
+button {
+background: #28a745;
+color: white;
+border: none;
+padding: 10px;
+width: 100%;
+border-radius: 5px;
+font-size: 16px;
+cursor: pointer;
+}
+.navbar {
+box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand img {
+margin-right: 10px;
+}
+
+.navbar-nav .nav-item {
+margin-right: 15px;
+}
+
+.navbar-toggler {
+border: none;
+}
+
+button:hover {
+background: #218838;
+}
+
+/* Remove the blue border if it's unnecessary */
+.border {
+border: none !important;
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    margin: auto;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.slide {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+* General Page Styling */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f4f7f6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Modal Container */
+.health-container {
+    text-align: center;
+    padding: 20px;
+    width: 400px;
+    background: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease-in-out;
+}
+
+/* Box for Health Information */
+.health-box {
+    padding: 20px;
+    font-size: 18px;
+    font-weight: 500;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 10px;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Dynamic Colors for Health Condition */
+.health-box.bad {
+    background: #ffebeb;
+    border-left: 5px solid #e63946;
+    color: #e63946;
+}
+
+.health-box.normal {
+    background: #e8f5e9;
+    border-left: 5px solid #4caf50;
+    color: #4caf50;
+}
+
+.health-box.warning {
+    background: #fff9c4;
+    border-left: 5px solid #ff9800;
+    color: #ff9800;
+}
+
+/* Heading Styling */
+h2 {
+    font-size: 22px;
+    font-weight: 600;
+    color: #333;
+}
+
+/* Text Styling */
+p {
+    margin: 10px 0;
+    font-size: 16px;
+}
+
+/* Add hover effect */
+.health-container:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+/* Container Styling */
+.health-container {
+    text-align: center;
+    padding: 20px;
+    width: 400px;
+    background: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(8px); /* Blur effect */
+    transition: all 0.3s ease-in-out;
+}
+.health-container {
+    text-align: center;
+    padding: 20px;
+    width: 500px;
+    background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQM-dk4QeTqjeFps1MKkXmAVChjcZtueZ8TOA&s') no-repeat center center;
+    background-size: cover;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(5px);
+    transition: all 0.3s ease-in-out;
+}
+
+/* Optional: If you want the text inside to be more readable */
+.health-box {
+    background: rgba(255, 255, 255, 0.8);
+    padding: 15px;
+    border-radius: 10px;
+    font-weight: bold;
+    color: #333;
+}
+.main-container {
+    width: 100%;
+    height: 100vh;
+    background-image: url('https://t4.ftcdn.net/jpg/05/26/34/97/360_F_526349755_0AoLzgo8AnqJuxWYrUXQHQJg4mHJtlxn.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/* Style for the heading */
+.page-heading {
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+/* Style for the container */
+.condition-box {
+    width: 50%;
+    background: #ffe6e6;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    text-align: center;
+}
+/* Page heading */
+.page-heading {
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    margin: 20px 0;
+}
+
+/* Flexbox container */
+.result_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin: 20px auto;
+    max-width: 80%;
+}
+
+/* Image Box */
+.image-box img {
+    width: 500px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Health Condition Box */
+.condition-box {
+    width: 50%;
+    background: #ffe6e6;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    
+}
+</style>
+<body style="background-image: url('https://t4.ftcdn.net/jpg/05/26/34/97/360_F_526349755_0AoLzgo8AnqJuxWYrUXQHQJg4mHJtlxn.jpg'); 
+             background-size: cover; 
+             background-position: center; 
+             background-repeat: no-repeat; 
+             background-attachment: fixed;">
+</body>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top shadow">
+    <div class="container-fluid">
+        <a class="navbar-brand d-flex align-items-center" href="#">
+            <img src="{% static 'img/logo.png' %}" width="40" height="40" class="me-2" alt="Logo">
+            Smart Health Monitoring
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarContent">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="http://127.0.0.1:8000/">Home</a>
+                </li>
+                <!-- <li class="nav-item">
+                    <a class="nav-link" href="{% url 'login' %}">Admin</a>
+                </li> -->
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'login' %}">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+     <div class="container"><br><br><br><br>
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3u9tQtNQHDIj2Al5WanBtuUaOvoBq07Lfxg&s"width="300px" height="200px" >
+     
+        <h2>Smart Health Monitoring</h2>
+        <label for="pulse_rate">Pulse Rate (bpm):</label><br>
+        <input type="number" id="pulse_rate" placeholder="Enter pulse rate"><br>
+        
+        <label for="heart_rate">Heart Rate (bpm):</label>
+        <input type="number" id="heart_rate" placeholder="Enter heart rate">
+        
+        <label for="blood_pressure_sys">Blood Pressure (Sys):</label>
+        <input type="number" id="blood_pressure_sys" placeholder="Enter systolic pressure">
+        
+        <label for="blood_pressure_dia">Blood Pressure (Dia):</label>
+        <input type="number" id="blood_pressure_dia" placeholder="Enter diastolic pressure">
+        
+        <label for="sugar_level">Sugar Level (mg/dL):</label>
+        <input type="number" id="sugar_level" placeholder="Enter sugar level">
+        
+        <button onclick="checkHealthCondition()">Check Health</button>
+      </div>
+
+    <!-- Modal for Health Condition with Slider -->
+    <div id="resultModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span><br>
+            <h3>Health Condition</h3><br>
+            <div class="slider-container">
+                <div class="slider" id="alertSlider"></div>
+            </div>
+        </div>
+    </div>
+
+    <audio id="alertSound" src="{% static 'audio/alert.mp3' %}"></audio>
+
+    <!-- External JS (If Needed) -->
+    <script src="{% static 'js/script.js' %}"></script>
+
+    <script>
+        async function checkHealthCondition() {
+            let pulse = parseInt(document.getElementById("pulse_rate").value);
+            let heartRate = parseInt(document.getElementById("heart_rate").value);
+            let bpSys = parseInt(document.getElementById("blood_pressure_sys").value);
+            let bpDia = parseInt(document.getElementById("blood_pressure_dia").value);
+            let sugarLevel = parseInt(document.getElementById("sugar_level").value);
+            let alertSound = document.getElementById("alertSound");
+            let modal = document.getElementById("resultModal");
+            let slider = document.getElementById("alertSlider");
+
+            try {
+            const response = await fetch("http://127.0.0.1:8000/check_up_count/", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                },
+            });
+            if (response.status === 200) {
+                    const data = await response.json();
+                    countDisplay.textContent = `Current Count: ${data.count}`;
+                } else {
+                    console.error('Failed to fetch the count');
+                }
+          }
+          catch (error) {
+            console.error(error);
+          }
+
+            if (isNaN(pulse) || isNaN(heartRate) || isNaN(bpSys) || isNaN(bpDia) || isNaN(sugarLevel)) {
+                alert("Please enter all values!");
+                return;
+            }
+
+            let condition = "Good";
+            let statusClass = "good";
+            let isAbnormal = false;
+
+            if (pulse < 60 || pulse > 100 || heartRate < 60 || heartRate > 100) {
+                condition = "Medium";
+                statusClass = "medium";
+                isAbnormal = true;
+            }
+
+            if (bpSys < 90 || bpSys > 140 || bpDia < 60 || bpDia > 90 || sugarLevel < 70 || sugarLevel > 140) {
+                condition = "Bad";
+                statusClass = "bad";
+                isAbnormal = true;
+            }
+
+            alert(`Your health condition is: ${condition}`);
+
+            slider.innerHTML = `
+        <h2 class="page-heading">Health Condition Details</h2>
+        <div class="result_container">
+          <div class="image-box">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjYWYcZwPHpPhmD6MvsV-U6eBcV0Y5YLdwTw&s" alt="Doctor Consultation" />
+          </div>
+          <div class="condition-box">
+            <p><strong>Health Status:</strong> ${condition}</p>
+            <p>${condition === "Good" ? "You're doing well! Keep it up." : (condition === "Medium" ? "Monitor your health closely." : "Consult a doctor immediately.")}</p>
+            <p><strong>Doctor:</strong> Dr. John Doe</p>
+            <p><strong>Contact:</strong> <a href="tel:6789754790">6789754790</a></p>
+          </div>
+        </div>
+      `;
+
+            modal.style.display = "flex";
+
+            if (isAbnormal) {
+                alertSound.play();
+            }
+        }
+
+        function closeModal() {
+            document.getElementById("resultModal").style.display = "none";
+        }
+    </script>
+    
+</body>
+</html>
+
+
+
