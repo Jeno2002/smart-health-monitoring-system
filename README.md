@@ -26,6 +26,8 @@ This project is a web-based application developed using Django that helps in mon
 
 ## ⚙️ Installation & Setup
 
+
+
 ### Step 1: Clone the repository
 
 git clone https://github.com/Jeno2002/smart-health-monitoring-system.git
@@ -90,3 +92,19 @@ http://127.0.0.1:8000/
 This project demonstrates practical implementation of a healthcare monitoring system using Django, focusing on real-time data handling and emergency response.
 
 ---
+## 📸 Screenshots
+
+### 🔐 Login Page
+![Login](Smart_Health_Login.png)
+
+### 📝 Register Page
+![Register](Smart_Health_Register.png)
+
+### 🏠 Dashboard
+![Dashboard](Smart_Health_Dashboard.png)
+
+### ❤️ Health Check Dashboard
+![Health Check](Smart_Health_User_Health_Check_Dashboard.png)
+
+### 📊 Health Condition
+![Health Condition](Smart_Health_User_Health_Condition.png)
